@@ -2,13 +2,14 @@ import React from 'react'
 import "./topbar.css"
 import { Link } from "react-router-dom";
 import { NotificationsNone, Language ,Settings}  from '@material-ui/icons';
-export default function Topbar() {
+import withAdmin from '../../withAdmin';
+const Topbar = (props) => {
   return (
     <div className="Topbar">
         <div className='topbarWrapper'>
             <div className="topLeft">
                 <span className='logo'>
-                    admin
+                    {props.user?.name}
                 </span>
             </div>
             <div className="topRight">
@@ -35,3 +36,5 @@ export default function Topbar() {
         </div>
   )
 }
+
+export default Topbar

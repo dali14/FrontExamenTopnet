@@ -4,8 +4,9 @@ import "./question.css";
 import { useParams } from "react-router-dom";
 import { useState,useEffect } from "react";
 import { Publish } from "@material-ui/icons";
+import withAdmin from "../../withAdmin";
 
-export default function Question() {
+const  Question= () => {
     const questionRows = [
         {
           id: '',
@@ -134,3 +135,4 @@ export default function Question() {
     </div>
   );
 }
+export default withAdmin(Question);

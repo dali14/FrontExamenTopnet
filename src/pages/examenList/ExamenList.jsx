@@ -4,7 +4,8 @@ import { DeleteOutline } from "@material-ui/icons";
 import React from 'react'
 import { Link } from "react-router-dom";
 import { useState,useEffect } from "react";
-export default function ExamenList() {
+import withAdmin from "../../withAdmin";
+const  ExamenList= () => {
 const examenRows = [
   {
     id: '',
@@ -98,3 +99,4 @@ const examenRows = [
     </div>
   );
 }
+export default withAdmin(ExamenList);

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { useState,useEffect } from "react";
 import withAdmin from "../../withAdmin";
 
-export default withAdmin(function QuestionsList() {
+const QuestionsList= () => {
    const questionRows = [
     {
       id: '',
@@ -41,7 +41,7 @@ export default withAdmin(function QuestionsList() {
   };
 
   const columns = [
-    { field: "questionId",
+    { field: "id",
      headerName: "ID",
       width: 90 },
     {
@@ -106,4 +106,5 @@ export default withAdmin(function QuestionsList() {
       />
     </div>
   );
-})
+}
+export default withAdmin(QuestionsList);

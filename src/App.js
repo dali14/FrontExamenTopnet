@@ -9,6 +9,7 @@ import User from "./pages/user/User";
 import Login from "./pages/login/Login";
 import ExamenList from "./pages/examenList/ExamenList";
 import FrontExamen from "./pages/frontExamen/FrontExamen";
+import PreExamen from "./pages/preExamen/PreExamen";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         <Route exact path='/login' element={ <Login />} />
         <Route exact path='/questions' element={ <QuestionsList />} />
+        <Route exact path='/preExamen' element={ <PreExamen />} />
         <Route exact path='/examen' element={ <ExamenList />} />
         <Route exact path='/ex' element={ <FrontExamen/>} />
         <Route exact path='/adduser' element={ <NewUser />} />

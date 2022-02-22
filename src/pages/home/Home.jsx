@@ -4,11 +4,11 @@ import Chart from "../../compenents/chart/Chart";
 import "./Home.css"
 import withAdmin from "../../withAdmin";
 
-const Home = () => {
+const Home = (props) => {
   return (
     <div className="home">
       
-      <FeaturedInfo />
+      <FeaturedInfo/>
       <Chart data={userData} title="User Analytics" grid dataKey="Active User"/>
     </div>
   )
