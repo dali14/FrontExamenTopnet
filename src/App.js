@@ -10,10 +10,15 @@ import Login from "./pages/login/Login";
 import ExamenList from "./pages/examenList/ExamenList";
 import FrontExamen from "./pages/frontExamen/FrontExamen";
 import PreExamen from "./pages/preExamen/PreExamen";
+import { HeadProvider, Meta } from "react-head";
 
 
 function App() {
   return (
+    <>
+    <HeadProvider> 
+      <meta name="csrf-token" content="{{ csrf_token() }}" />
+    </HeadProvider>
     <Router>
       <Routes>
         <Route exact path='/login' element={ <Login />} />
@@ -28,6 +33,7 @@ function App() {
         <Route exact path='/' element={ <Home />} />
       </Routes>
     </Router>
+    </>
   );
 }
 

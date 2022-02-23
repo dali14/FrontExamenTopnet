@@ -1,10 +1,11 @@
 import "./questionsList.css";
 import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
-//import { productRows } from "../../dummyData";
+
 import { Link } from "react-router-dom";
 import { useState,useEffect } from "react";
 import withAdmin from "../../withAdmin";
+import { HeadProvider, Meta } from "react-head";
 
 const QuestionsList= () => {
    const questionRows = [
@@ -17,7 +18,9 @@ const QuestionsList= () => {
     },]
     const [questions, setQuestions] = useState(questionRows);
     const url = 'http://localhost:8000/api/allquestion';
+    const token = localStorage.getItem('token');
     useEffect(() => {
+        console.log(token)
         fetch(url)
         .then(res => res.json())
         
@@ -36,7 +39,18 @@ const QuestionsList= () => {
     }, [])
     //const [data, setData] = useState([]);
     const handleDelete = (id) => {
-      setQuestions(questions.filter((item) => item.id !== id));
+      
+      fetch(`http://localhost:8000/api/question/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Authorization' : `Bearer ${token}`,
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+
+    },
+    body: JSON.stringify()
+  })
+    .then(data => data.json())
     
   };
 
@@ -82,11 +96,15 @@ const QuestionsList= () => {
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/question/" + params.row.id}>
-              <button className="productListEdit">Edit</button>
+          <HeadProvider> 
+      <Meta name="csrf-token" content="{{ csrf_token() }}" />
+      </HeadProvider>
+            <Link to={"/question/" + params.row.id} >
+              <button className="productListEdit">View</button>
             </Link>
             <DeleteOutline
               className="productListDelete"
+              data-method="delete"
               onClick={() => handleDelete(params.row.id)}
             />
           </>

@@ -9,7 +9,7 @@ const Topbar = (props) => {
         <div className='topbarWrapper'>
             <div className="topLeft">
                 <span className='logo'>
-                    {props.user?.name}
+                   Welcome {props.user?.name}
                 </span>
             </div>
             <div className="topRight">
