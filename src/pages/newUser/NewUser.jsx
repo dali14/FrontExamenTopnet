@@ -5,10 +5,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import withAdmin from "../../withAdmin";
 
 const NewUser = () => {
-
+  const notify = () => toast("user added successfully");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const notify = () => toast("user added successfully");
   const [password, setPassword] = useState("");
   const [password_confirmation, setPasswordConfirmation] = useState("");
   const handleSubmit = (e) => {

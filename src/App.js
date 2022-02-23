@@ -11,6 +11,7 @@ import ExamenList from "./pages/examenList/ExamenList";
 import FrontExamen from "./pages/frontExamen/FrontExamen";
 import PreExamen from "./pages/preExamen/PreExamen";
 import { HeadProvider, Meta } from "react-head";
+import NewQuestion from "./pages/newQuestion/NewQuestion";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
     </HeadProvider>
     <Router>
       <Routes>
+        <Route exact path='/add' element={ <NewQuestion />} />
         <Route exact path='/login' element={ <Login />} />
         <Route exact path='/questions' element={ <QuestionsList />} />
         <Route exact path='/preExamen' element={ <PreExamen />} />

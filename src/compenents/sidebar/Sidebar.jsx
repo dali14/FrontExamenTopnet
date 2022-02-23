@@ -23,6 +23,12 @@ export default function Sidebar() {
                         All Questions
                     </li>
                     </Link>
+                    <Link to="/add" className="link">
+                    <li className="sidebarListItem">
+                        <LiveHelp className="sidebarIcon"/>
+                        New Question
+                    </li>
+                    </Link>
                     
                 </ul>
             </div>
