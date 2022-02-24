@@ -1,9 +1,10 @@
 import React from 'react'
+import withAdmin from '../../withAdmin';
 
-export default function AddRep() {
+const AddRep= () => {
   return (
     <div className='productList'>
-         <h1 className="productTitle">New Question</h1>
+         <h1 className="productTitle">New Reponce Question Id :</h1>
       <div className="productBottom">
      
       
@@ -32,9 +33,11 @@ export default function AddRep() {
                       <input type="file" id="file" style={{display:"none"}} />
                   </div>
                   <button className="productButton">Add Reponce</button>
+                  <button className="productButton">question list</button>
               </div>
           </form>
       </div>
     </div>
   )
 }
+export default withAdmin(AddRep);

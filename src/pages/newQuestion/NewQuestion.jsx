@@ -11,11 +11,11 @@ const NewQuestion= () => {
   const [time, setTime] = useState("");
   const [type, setType] = useState(["Text", "image"]);
   const [etat, setEtat] = useState(["Active", "Deactive"]);
-  const Add = addrtype.map(Add => Add)
+  
   const handleSubmit = (e) => {
     e.preventDefault()
-
-
+    console.log(token)
+    
     fetch("http://localhost:8000/api/question", {
       method: 'post',
       headers: { 
@@ -40,6 +40,7 @@ const NewQuestion= () => {
         // setPassword("")
         // setPasswordConfirmation("")
         notify()
+        window.location = "/addRep/"+ res.id
       });
 
 
@@ -58,7 +59,7 @@ const NewQuestion= () => {
                   <input type="text" placeholder="Text Question"  value={question} onChange={(e) => setQuestion(e.target.value)}/>
                   
                   <label>Level</label>
-                  <select name="inStock" id="idStock" >
+                  <select name="inStock" id="idStock" onChange={(e) => setNiveau(e.target.value)}>
                       <option value="1">Easy</option>
                       <option value="2">Medium</option>
                       <option value="3">Hard</option>
@@ -68,12 +69,12 @@ const NewQuestion= () => {
                   <input type="text" placeholder="time with sec" value={time} onChange={(e) => setTime(e.target.value)} />
 
                   <label>Type</label>
-                  <select name="active" id="active">
+                  <select name="active" id="active" onChange={(e) => setType(e.target.value)}>
                       <option value="text">text</option>
                       <option value="image">image</option>
                   </select>
                   <label>Etat</label>
-                  <select name="active" id="active">
+                  <select name="active" id="active" onChange={(e) => setEtat(e.target.value)}>
                       <option value="text">Active</option>
                       <option value="image">Deactive</option>
                   </select>
@@ -86,7 +87,8 @@ const NewQuestion= () => {
                       </label>
                       <input type="file" id="file" style={{display:"none"}} />
                   </div>
-                  <button className="productButton">Add Question</button>
+                  <button className="productButton" type="submit" >Add Question</button>
+                  <ToastContainer />
               </div>
           </form>
       </div>

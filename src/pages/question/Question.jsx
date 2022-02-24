@@ -72,31 +72,19 @@ const  Question= () => {
           <form className="productForm">
           
                 <div className="productFormLeft">
-                  <label></label>
-                  <input type="text" placeholder="Text Question" />
-                  
-                  <label>Level</label>
-                  <select name="inStock" id="idStock">
-                      <option value="1">Easy</option>
-                      <option value="2">Medium</option>
-                      <option value="3">Hard</option>
-                  </select>
-
                   <label>Time</label>
                   <input type="text" placeholder="time with sec" />
 
-                  <label>Type</label>
+                  <label>Etat</label>
                   <select name="active" id="active">
-                      <option value="text">text</option>
-                      <option value="image">image</option>
+                      <option value="text">Active</option>
+                      <option value="image">deactive</option>
                   </select>
               </div>
               <div className="productFormRight">
                   <div className="productUpload">
-                      <img src="https://images.pexels.com/photos/7156886/pexels-photo-7156886.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="" className="productUploadImg" />
-                      <label for="file">
-                          <Publish/>
-                      </label>
+                      
+                      
                       <input type="file" id="file" style={{display:"none"}} />
                   </div>
                   <button className="productButton">Update</button>

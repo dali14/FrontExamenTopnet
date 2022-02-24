@@ -15,6 +15,7 @@ const QuestionsList= () => {
       niveau: '',
       time: '',
       type: '',
+      etat: ''
     },]
     const [questions, setQuestions] = useState(questionRows);
     const url = 'http://localhost:8000/api/allquestion';
@@ -31,6 +32,7 @@ const QuestionsList= () => {
           niveau:questions.niveau,
           time:questions.time,
           type:questions.type,
+          etat:questions.etat,
       }))))
         
         
@@ -50,7 +52,7 @@ const QuestionsList= () => {
     },
     body: JSON.stringify()
   })
-    .then(data => data.json())
+    .then(data => data.json(),window.location.reload())
     
   };
 
@@ -71,8 +73,9 @@ const QuestionsList= () => {
         );
       },
     },
-    { field: "niveau",
-     headerName: "Niveau",
+    { 
+      field: "niveau",
+      headerName: "Niveau",
       width: 200 },
     {
       field: "time",

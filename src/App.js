@@ -12,6 +12,7 @@ import FrontExamen from "./pages/frontExamen/FrontExamen";
 import PreExamen from "./pages/preExamen/PreExamen";
 import { HeadProvider, Meta } from "react-head";
 import NewQuestion from "./pages/newQuestion/NewQuestion";
+import AddRep from "./pages/addRep/AddRep";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
     <Router>
       <Routes>
         <Route exact path='/add' element={ <NewQuestion />} />
+        <Route exact path='/addRep/:id' element={ <AddRep />} />
         <Route exact path='/login' element={ <Login />} />
         <Route exact path='/questions' element={ <QuestionsList />} />
         <Route exact path='/preExamen' element={ <PreExamen />} />
