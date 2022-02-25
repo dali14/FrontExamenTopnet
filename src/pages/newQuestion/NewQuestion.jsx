@@ -23,11 +23,11 @@ const NewQuestion= () => {
        'Access-Control-Allow-Origin': '*',
        'Authorization' : `Bearer ${token}` },
       body: JSON.stringify({
-        question: niveau,
+        question: question,
         niveau: niveau,
         time: time,
         type: type,
-        etat: etat,
+        etat: 'Active',
       }
       )
     }
@@ -73,11 +73,7 @@ const NewQuestion= () => {
                       <option value="text">text</option>
                       <option value="image">image</option>
                   </select>
-                  <label>Etat</label>
-                  <select name="active" id="active" onChange={(e) => setEtat(e.target.value)}>
-                      <option value="text">Active</option>
-                      <option value="image">Deactive</option>
-                  </select>
+                  
               </div>
               <div className="productFormRight">
                   <div className="productUpload">

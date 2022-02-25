@@ -7,7 +7,7 @@ import withAdmin from '../../withAdmin';
 
 const FrontExamen = () => {
 
-	const [time, setTime] = useState(50);
+	const [time, setTime] = useState();
     //const id = Math.floor(Math.random()*limit);
     const url = 'http://localhost:8000/api/question/';
     const [questions, setQuestions] = useState([])
@@ -15,14 +15,14 @@ const FrontExamen = () => {
     useEffect(() => {
         fetch(url)
         .then(res => res.json())
-        .then(res => setQuestions([...res.questions].map((question) => ({
+        .then(res => {setQuestions([...res.questions].map((question) => ({
             questionText: question.question,
             time: question.time,
             answerOptions: question.get_reponces.map(response => ({
                 answerText: response.reponce,
                 isCorrect: response.nature
             }))
-        }))))
+        }))); setTime(res.time)})
     }, [])
 
 	useEffect(() => {
@@ -49,7 +49,7 @@ const FrontExamen = () => {
 			setShowScore(true);
 		}
 	};
-  return time <= 0 ? (<div>Time up</div>) :(
+  return time <= 0 ? (<div className='score-section'>Time up You scored {score} out of {questions.length}</div> ) :(
 	<div className="main">
 	<div className='timer'>
 				{time}

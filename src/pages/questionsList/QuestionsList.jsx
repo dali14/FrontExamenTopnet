@@ -52,7 +52,7 @@ const QuestionsList= () => {
     },
     body: JSON.stringify()
   })
-    .then(data => data.json(),window.location.reload())
+    .then(data => data.json())
     
   };
 
@@ -63,7 +63,7 @@ const QuestionsList= () => {
     {
       field: "questionText",
       headerName: "Question",
-      width: 200,
+      width: 400,
       renderCell: (params) => {
         return (
           <div className="productListItem">
@@ -76,11 +76,11 @@ const QuestionsList= () => {
     { 
       field: "niveau",
       headerName: "Niveau",
-      width: 200 },
+      width: 120,},
     {
       field: "time",
       headerName: "Time",
-      width: 120,
+      width: 120
     },
     {
       field: "type",
@@ -88,14 +88,14 @@ const QuestionsList= () => {
       width: 160,
     },
     {
-      field: "Etat",
+      field: "etat",
       headerName: "Etat",
-      width: 160,
+      width: 120,
     },
     {
       field: "action",
       headerName: "Action",
-      width: 150,
+      width: 120,
       renderCell: (params) => {
         return (
           <>

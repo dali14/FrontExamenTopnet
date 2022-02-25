@@ -3,7 +3,7 @@ import "./question.css";
 //import Chart from "../components/chart/Chart"
 import { useParams } from "react-router-dom";
 import { useState,useEffect } from "react";
-import { Publish } from "@material-ui/icons";
+
 import withAdmin from "../../withAdmin";
 
 const  Question= () => {

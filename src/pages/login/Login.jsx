@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
   },
   image: {
-    backgroundImage: 'url(http://www.webdo.tn/wp-content/uploads/2020/03/topnet.jpg)',
+    backgroundImage: 'url(https://www.topconpositioning.com/sites/default/files/product_hero_images/heropicturetopnetlive.jpg)',
     backgroundSize: 'cover',
   },
   paper: {

@@ -6,17 +6,52 @@ import {
     PhoneAndroid,
     Publish,
   } from "@material-ui/icons";
-  import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import withAdmin from "../../withAdmin";
-  import "./user.css";
+import React, { useEffect, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import { useParams } from "react-router-dom";
+import "./user.css";
   
   const User = (props) => {
+    const params = useParams();
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const notify = () => toast("user modifier avec succes");
+
+    const handleSubmit = (e) => {
+      e.preventDefault()
+  
+  
+      fetch(`http://localhost:8000/api/updateuser/${props.user?.id}`,{
+        method: 'put', headers: { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          
+        }
+        )
+      }
+      )
+        .then(res => res.json())
+        .then(res => {
+          console.log(res);
+          setName("")
+          setEmail("")
+          
+          notify()
+        });
+  
+  
+  
+    }
+
     return (
       <div className="user">
         <div className="userTitleContainer">
           <h1 className="userTitle">Edit User</h1>
           <Link to="/newUser">
-            <button className="userAddButton">Create</button>
+            <button className="userAddButton" onClick={()=>{localStorage.removeItem("token");window.location="/login"}}>Log Out</button>
           </Link>
         </div>
         <div className="userContainer">
@@ -59,7 +94,7 @@ import withAdmin from "../../withAdmin";
           </div>
           <div className="userUpdate">
             <span className="userUpdateTitle">Edit</span>
-            <form className="userUpdateForm">
+            <form className="userUpdateForm" onSubmit={handleSubmit}>
               <div className="userUpdateLeft">
                 <div className="userUpdateItem">
                   <label>Username</label>
@@ -67,6 +102,7 @@ import withAdmin from "../../withAdmin";
                     type="text"
                     placeholder="annabeck99"
                     className="userUpdateInput"
+                    onChange={e => setName(e.target.value)}
                   />
                 </div>
 
@@ -76,6 +112,7 @@ import withAdmin from "../../withAdmin";
                     type="text"
                     placeholder="annabeck99@gmail.com"
                     className="userUpdateInput"
+                    onChange={e => setEmail(e.target.value)}
                   />
                 </div>
                 
@@ -93,7 +130,8 @@ import withAdmin from "../../withAdmin";
                   </label>
                   <input type="file" id="file" style={{ display: "none" }} />
                 </div>
-                <button className="userUpdateButton">Update</button>
+                <button className="userUpdateButton" type="submit">Update</button>
+                <ToastContainer />
               </div>
             </form>
           </div>
