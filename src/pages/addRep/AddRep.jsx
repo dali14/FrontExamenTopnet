@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import withAdmin from '../../withAdmin';
 import { useParams } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
+import { red } from '@material-ui/core/colors';
 
 
 const AddRep= () => {
@@ -43,6 +44,7 @@ const AddRep= () => {
       .then(res => res.json())
       .then(res => {
         console.log(res);
+        setQuestion({...question, reponce: [...question.reponce, {id: res.id, answerText: res.reponce, isCorrect: res.nature}]}) //changement de state temp reel 
         
         notify()
         // window.location = "/addRep/"+ res.id

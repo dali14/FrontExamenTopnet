@@ -38,6 +38,7 @@ import "./user.css";
           console.log(res);
           setName("")
           setEmail("")
+          props.updateUser();
           
           notify()
         });
@@ -103,6 +104,7 @@ import "./user.css";
                     placeholder="annabeck99"
                     className="userUpdateInput"
                     onChange={e => setName(e.target.value)}
+                    value={name}
                   />
                 </div>
 
@@ -113,6 +115,7 @@ import "./user.css";
                     placeholder="annabeck99@gmail.com"
                     className="userUpdateInput"
                     onChange={e => setEmail(e.target.value)}
+                    value={email}
                   />
                 </div>
                 

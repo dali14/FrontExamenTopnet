@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import "./frontExamen.css"
 
-import withAdmin from '../../withAdmin';
 
 
 
 const FrontExamen = () => {
 
 	const [time, setTime] = useState();
-    //const id = Math.floor(Math.random()*limit);
+
     const url = 'http://localhost:8000/api/question/';
     const [questions, setQuestions] = useState([])
 
@@ -16,6 +15,7 @@ const FrontExamen = () => {
         fetch(url)
         .then(res => res.json())
         .then(res => {setQuestions([...res.questions].map((question) => ({
+			id: question.id,
             questionText: question.question,
             time: question.time,
             answerOptions: question.get_reponces.map(response => ({
@@ -47,9 +47,13 @@ const FrontExamen = () => {
 			setCurrentQuestion(nextQuestion);
 		} else {
 			setShowScore(true);
+			console.log(questions?.map(item => item.id).join("|"))
+			console.log(questions)
+			var b = new Date()
+			console.log(b.toISOString().slice(0,b.toISOString().length-5).split("T").join(" "))
 		}
 	};
-  return time <= 0 ? (<div className='score-section'>Time up You scored {score} out of {questions.length}</div> ) :(
+  return time <= 0 ? (<div className='score-section'>Time up user {localStorage.getItem("cin")}You scored {score} out of {questions.length}</div> ) :(
 	<div className="main">
 	<div className='timer'>
 				{time}
@@ -58,7 +62,7 @@ const FrontExamen = () => {
 			
 			{showScore ? (
 				<div className='score-section'>
-					You scored {score} out of {questions.length}
+					user {localStorage.getItem("cin")} scored {score} out of {questions.length}
 				</div>
 			) : (
 				<>
@@ -71,7 +75,7 @@ const FrontExamen = () => {
                     
 					<div className='answer-section'>
 						{questions[currentQuestion]?.answerOptions.map((answerOption,index) => (
-							<button key={index} className="answer-text" onClick={() => handleAnswerOptionClick(answerOption?.isCorrect)}>{answerOption?.answerText}</button>
+							<button key={""+currentQuestion+index} className="answer-text" onClick={() => handleAnswerOptionClick(answerOption?.isCorrect)}>{answerOption?.answerText}</button>
 						))}
 					</div>
 				</>
