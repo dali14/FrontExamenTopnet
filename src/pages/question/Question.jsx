@@ -36,8 +36,15 @@ const  Question= () => {
     <div className="product">
       <div className="productTitleContainer">
         <h1 className="productTitle">Question</h1>
-        <Link to="/newproduct">
-          <button className="productAddButton">Create</button>
+        
+
+
+        <Link
+  to={{
+    pathname: "/addRep/"+params.id,
+    
+  }}
+><button className="productAddButton">add Rep</button>
         </Link>
       </div>
       <div className="productBottom">

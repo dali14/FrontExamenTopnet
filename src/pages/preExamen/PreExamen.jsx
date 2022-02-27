@@ -10,6 +10,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { MenuItem, Select } from "@material-ui/core";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100vh',
@@ -79,7 +80,7 @@ async function loginUser(credentials) {
       <CssBaseline />
       <Grid item xs={false} md={7} className={classes.image} />
       <Grid item xs={12} md={5} component={Paper} elevation={6} square>
-        <div className={classes.paper}>
+        <div className={classes.paper} >
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>

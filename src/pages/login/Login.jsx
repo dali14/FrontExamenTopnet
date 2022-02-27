@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import swal from 'sweetalert2';
+import { ToastContainer, toast } from 'react-toastify';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,6 +54,7 @@ export default function Signin() {
   const classes = useStyles();
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
+  const notify = () => toast("bad login or password");
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -63,10 +64,16 @@ export default function Signin() {
     });
 
     console.log(response)
-
-    localStorage.setItem("token", response.token)
-
-    window.location = "/"
+    if(!response.token){
+       console.log("login failed")
+       notify()
+       
+  }else{  
+   
+      localStorage.setItem("token", response.token)
+      window.location = "/"
+    } 
+    
    
   }
 
@@ -113,6 +120,7 @@ export default function Signin() {
             >
               Sign In
             </Button>
+            <ToastContainer />
           </form>
         </div>
       </Grid>

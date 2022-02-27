@@ -74,8 +74,8 @@ const AddRep= () => {
 
                   <label>nature</label>
                   <select name="inStock" id="idStock" onChange={e => setNature(e.target.value)}>
-                      <option value="Vrai">Vrai</option>
-                      <option value="Faux">Faux</option>
+                      <option value="1">Vrai</option>
+                      <option value="0">Faux</option>
                       
                   </select>
               </div>
