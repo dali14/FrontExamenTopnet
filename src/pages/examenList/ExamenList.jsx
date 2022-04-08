@@ -30,6 +30,7 @@ const examenRows = [
           duree:examen.duree,
           date:examen.date,
           question:examen.question,
+          resultat: examen.note/4 >= 0.5 ? "Admis" : "Refuse"
       }))))
     }, [])
     const handleDelete = (id) => {
@@ -55,8 +56,8 @@ const examenRows = [
       width: 120,
     },
     {
-      field: "Note",
-      headerName: "note",
+      field: "note",
+      headerName: "Note",
       width: 120,
     },
     {

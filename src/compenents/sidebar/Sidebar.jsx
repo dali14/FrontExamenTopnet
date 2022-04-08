@@ -10,7 +10,7 @@ export default function Sidebar() {
                 <h3 className="sidebarTitle">Dashboard</h3>
                 <ul className="sidebarList">
 
-                    <Link to="/" className="link">
+                    <Link to="/admin" className="link">
                     <li className="sidebarListItem active">
                     <LineStyle className="sidebarIcon"/>
                         Home
@@ -38,7 +38,7 @@ export default function Sidebar() {
                 <Link to="/examen" className="link">
                     <li className="sidebarListItem active">
                         <LineStyle className="sidebarIcon"/>
-                        New Examen
+                        List Examen
 
                     </li>
                     </Link>

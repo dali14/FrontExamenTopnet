@@ -7,9 +7,43 @@ import background from "C:/Users/DELL/Desktop/Test/dash-admin/src/assets/ex.jpg"
 
 const FrontExamen = () => {
 
-	const [time, setTime] = useState(); 
+	const [dataSent, setDataSent] = useState(false)
+	const [time, setTime] = useState(100);
+	const [totalTime, setTotalTime] = useState(0);
     const url = 'http://localhost:8000/api/question/';
+	const home = 'http://localhost:3000/';
     const [questions, setQuestions] = useState([])
+	const [currentQuestion, setCurrentQuestion] = useState(0);
+	const [showScore, setShowScore] = useState(false);
+	const [score, setScore] = useState(0);
+	
+
+	const sendData = () => {
+		console.log(dataSent)
+		if (dataSent) {
+			return;
+		}
+		fetch("http://localhost:8000/api/examen", {
+				method: 'post',
+				headers: { 
+				 "Content-Type": "application/json",
+				 'Access-Control-Allow-Origin': '*',
+				 
+				  },
+				body: JSON.stringify({
+				  cin: cin,
+				  note: score,
+				  duree: totalTime,
+				  date: date,
+				  question: questions?.map(item => item.id).join("|"),
+				})})
+      				.then(res => {
+       				 console.log(res);
+       				 
+     			 }
+				  );
+				  setDataSent(true)
+	}
 
     useEffect(() => {
         fetch(url)
@@ -22,23 +56,30 @@ const FrontExamen = () => {
                 answerText: response.reponce,
                 isCorrect: response.nature
             }))
-        }))); setTime(res.time)})
+        }))); setTime(res.time); setTotalTime(res.time)}); 
     }, [])
 
 	useEffect(() => {
-		setInterval(() => {setTime(time => time -1)}, 1000)
+		setInterval(() => {
+			setTime(time => time -1);
+		}, 1000)
 	},[])
-    
-    
-    
-    
 
-	const [currentQuestion, setCurrentQuestion] = useState(0);
-	const [showScore, setShowScore] = useState(false);
-	const [score, setScore] = useState(0);
+	useEffect(() => {
+		if(!dataSent && time < 0 ) {
+			sendData();
+		}
+	},[time])
+	
+	var b = new Date()
+			const [cin, setCin] = useState(localStorage.getItem("cin"));
+			// const [note , setNote] =useState(score);
+			// const [duree, setDuree] = useState(time);
+			const [date, setDate] = useState(b.toISOString().slice(0,b.toISOString().length-5).split("T").join(" "));
+			const [question, setQuestion] = useState();
 
 	const handleAnswerOptionClick = (isCorrect) => {
-		if (isCorrect) {
+		if (isCorrect=="Vrai") {
 			setScore(score + 1);
 		}
 
@@ -47,14 +88,16 @@ const FrontExamen = () => {
 			setCurrentQuestion(nextQuestion);
 		} else {
 			setShowScore(true);
+			console.log(date)
 			console.log(questions?.map(item => item.id).join("|"))
-			console.log(questions)
+			console.log(time)
+			console.log(score)
+			console.log(cin)
 			var b = new Date()
-			console.log(b.toISOString().slice(0,b.toISOString().length-5).split("T").join(" "))
-
 		}
+			
 	};
-  return time <= 0 ? (<div className='score-section'>Time up user {localStorage.getItem("cin")}You scored {score} out of {questions.length}</div> ) :(
+  return time <= 0 ? (<div className='score-section'>Time up user {localStorage.getItem("cin")}You scored {score} out of {questions.length} <a href={home}>Go Home</a> </div> ) :(
 	<div className="main" style={{ backgroundImage: `url(${background})` }}>
 	<div className='timer'>
 				{time}
@@ -66,7 +109,10 @@ const FrontExamen = () => {
 			
 			{showScore ? (
 				<div className='score-section'>
-					user {localStorage.getItem("cin")} scored {score} out of {questions.length}
+					Stagaire : {localStorage.getItem("cin")} <br></br>Scored  : {score} out of {questions.length}{sendData(true)}
+					<br></br>
+					<a href={home}>Go Home</a>
+					
 				</div>
 			) : (
 				<>

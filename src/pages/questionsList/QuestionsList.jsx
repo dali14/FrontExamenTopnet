@@ -117,7 +117,10 @@ const QuestionsList= () => {
   ];
 
   return (
+    
     <div className="productList">
+       <h1 className="productTitle">Liste Des Questions </h1>
+       <br></br>
       <DataGrid
         rows={questions}
         disableSelectionOnClick

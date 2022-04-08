@@ -27,14 +27,14 @@ function App() {
         <Route exact path='/addRep/:id' element={ <AddRep />} />
         <Route exact path='/login' element={ <Login />} />
         <Route exact path='/questions' element={ <QuestionsList />} />
-        <Route exact path='/preExamen' element={ <PreExamen />} />
+        <Route exact path='/' element={ <PreExamen />} />
         <Route exact path='/examen' element={ <ExamenList />} />
         <Route exact path='/ex' element={ <FrontExamen/>} />
         <Route exact path='/adduser' element={ <NewUser />} />
         <Route exact path='/user' element={ <UserList />} />
         <Route exact path='/myuser' element={ <User />} />
         <Route exact path='/question/:id' element={<Question/>} />
-        <Route exact path='/' element={ <Home />} />
+        <Route exact path='/admin' element={ <Home />} />
       </Routes>
     </Router>
     </>

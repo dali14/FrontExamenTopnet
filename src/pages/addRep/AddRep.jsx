@@ -44,7 +44,7 @@ const AddRep= () => {
       .then(res => res.json())
       .then(res => {
         console.log(res);
-        setQuestion({...question, reponce: [...question.reponce, {id: res.id, answerText: res.reponce, isCorrect: res.nature}]}) //changement de state temp reel 
+        setQuestion({...question, reponce: [...question.reponce, {id: res.id, answerText: res.reponce, type: res.type, isCorrect: res.nature}]}) //changement de state temp reel 
         
         notify()
         // window.location = "/addRep/"+ res.id
@@ -74,8 +74,8 @@ const AddRep= () => {
 
                   <label>nature</label>
                   <select name="inStock" id="idStock" onChange={e => setNature(e.target.value)}>
-                      <option value="1">Vrai</option>
-                      <option value="0">Faux</option>
+                      <option value="Vrai">Vrai</option>
+                      <option value="Faux">Faux</option>
                       
                   </select>
               </div>
@@ -102,6 +102,10 @@ const AddRep= () => {
                   <div className="productInfoItem">
                       <span className="productInfoKey">Text</span>
                       <span className="productInfoValue">{reponce.answerText}</span>
+                  </div>
+                  <div className="productInfoItem">
+                      <span className="productInfoKey">Type</span>
+                      <span className="productInfoValue">{reponce.type}</span>
                   </div>
                   <div className="productInfoItem">
                       <span className="productInfoKey">Nature</span>

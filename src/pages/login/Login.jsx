@@ -71,7 +71,7 @@ export default function Signin() {
   }else{  
    
       localStorage.setItem("token", response.token)
-      window.location = "/"
+      window.location = "/admin"
     } 
     
    

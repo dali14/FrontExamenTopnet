@@ -6,7 +6,8 @@ import { useState,useEffect } from "react";
 
 import withAdmin from "../../withAdmin";
 
-const  Question= () => {
+
+    const  Question= () => {
     const questionRows = [
         {
           id: '',
@@ -25,7 +26,33 @@ const  Question= () => {
             },]
     const params = useParams();
     const [question, setQuestion] = useState(null);
+    const [aptime, setAptime] = useState("");
+    const [apStatut, setApStatut] = useState("");
 
+    const handleSubmit = (e) => {
+      e.preventDefault()
+  
+  
+      fetch(`http://localhost:8000/api/updatequestion/${params.id}`, {
+        method: 'put', headers: { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' },
+        body: JSON.stringify({
+          time: aptime,
+          etat: apStatut,
+         
+        }
+        )
+      }
+      )
+        .then(res => res.json())
+        .then(res => {
+          console.log(res);
+          aptime("")
+          apStatut("")
+        });
+  
+  
+  
+    }
     useEffect(() => {
         fetch(`http://localhost:8000/api/question/${params.id}`)
         .then(res => res.json())
@@ -76,16 +103,16 @@ const  Question= () => {
       <div className="productBottom">
      
       
-          <form className="productForm">
+          <form className="productForm" onSubmit={handleSubmit}>
           
                 <div className="productFormLeft">
                   <label>Time</label>
-                  <input type="text" placeholder="time with sec" />
+                  <input type="text" placeholder="time with sec"  value={aptime} onChange={(e) => setAptime(e.target.value)}/>
 
                   <label>Etat</label>
-                  <select name="active" id="active">
-                      <option value="text">Active</option>
-                      <option value="image">deactive</option>
+                  <select name="active" id="active" value={apStatut} onChange={(e) => setApStatut(e.target.value)}>
+                      <option value="active">Active</option>
+                      <option value="deactive">deactive</option>
                   </select>
               </div>
               <div className="productFormRight">
@@ -94,7 +121,7 @@ const  Question= () => {
                       
                       <input type="file" id="file" style={{display:"none"}} />
                   </div>
-                  <button className="productButton">Update</button>
+                  <button className="productButton" type="submit">Update</button>
               </div>
           </form>
       </div>
